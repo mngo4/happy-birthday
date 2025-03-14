@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Coupons For You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Berkshire+Swash&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Yeseva+One&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="coupon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="coupons-page">
+    <header class="cover">
+        <img src="cover1.jpg" alt="Birthday Cover Image">
+        <h1>Coupons for Your Special Day</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="letter.html">Letter</a></li>
+            <li><a href="coupons.html">Coupons</a></li>
+            <li><a href="cake.html">Birthday Cake</a></li>
+            <li><a href="gift.html">Gift</a></li>
+        </ul>
+    </nav>
+
+
+    <audio id="bg-music" loop>
+        <source src="background-2.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="sound-btn">
+        <i class="fas fa-volume-mute"></i> <!-- Default icon for sound -->
+    </button>
+
+    <div class="coupon-grid">
+        <div class="coupon-card">
+            <div class="card-content">
+                <h3>Team Collaboration</h3>
+                <p>Experience seamless teamwork and collaboration with our dedicated team members.</p>
+                <button class="redeem-button" onclick="redeemCoupon('Team Collaboration')">Learn More</button>
+            </div>
+        </div>
+        <div class="coupon-card">
+            <div class="card-content">
+                <h3>Innovative Projects</h3>
+                <p>Get involved in cutting-edge projects that push the boundaries of technology.</p>
+                <button class="redeem-button" onclick="redeemCoupon('Innovative Projects')">Learn More</button>
+            </div>
+        </div>
+        <div class="coupon-card">
+            <div class="card-content">
+                <h3>Professional Growth</h3>
+                <p>Take advantage of opportunities for professional development and career advancement.</p>
+                <button class="redeem-button" onclick="redeemCoupon('Professional Growth')">Learn More</button>
+            </div>
+        </div>
+        <div class="coupon-card">
+            <div class="card-content">
+                <h3>Work-Life Balance</h3>
+                <p>Enjoy a healthy work-life balance with flexible working hours and remote work options.</p>
+                <button class="redeem-button" onclick="redeemCoupon('Work-Life Balance')">Learn More</button>
+            </div>
+        </div>
+        <div class="coupon-card">
+            <div class="card-content">
+                <h3>Inclusive Culture</h3>
+                <p>Be part of an inclusive and diverse workplace that values every individual's contribution.</p>
+                <button class="redeem-button" onclick="redeemCoupon('Inclusive Culture')">Learn More</button>
+            </div>
+        </div>
+        <div class="coupon-card">
+            <div class="card-content">
+                <h3>Employee Benefits</h3>
+                <p>Access a comprehensive benefits package that supports your health and well-being.</p>
+                <button class="redeem-button" onclick="redeemCoupon('Employee Benefits')">Learn More</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="coupon-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="coupon-title"></h2>
+            <p id="coupon-description"></p>
+            <button class="modal-close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay">
+        <img class="lightbox-img" src="" alt="Enlarged coupon">
+        <div class="close-btn">&#10005;</div> <!-- Close button -->
+    </div>
+
+    <div id="scroll-indicator">Scroll</div>
+    <div id="scroll-arrow">&#8595;</div>
+
+    <footer>
+        <p>Made with ♡ by Michelle</p>
+    </footer>
+
+
+
+    <script>
+        // Open the lightbox
+        function openLightbox(imgSrc) {
+            const lightbox = document.querySelector('.lightbox-overlay');
+            const lightboxImg = document.querySelector('.lightbox-img');
+            const lightboxContainer = document.querySelector('.lightbox-img');
+
+            // Set the source of the image and display the lightbox
+            lightboxImg.src = imgSrc;
+            lightbox.style.display = 'flex';
+            lightbox.classList.add('show');
+            lightboxContainer.classList.add('show');
+
+            // Add transition on the image scaling
+            lightboxImg.style.transform = 'scale(1)';
+        }
+
+        // Close the lightbox with smooth transition
+        function closeLightbox() {
+            const lightbox = document.querySelector('.lightbox-overlay');
+            const lightboxImg = document.querySelector('.lightbox-img');
+
+            // Shrink the image before hiding the lightbox
+            lightboxImg.style.transform = 'scale(0)'; // Shrink image smoothly
+
+            // Wait for the transition to finish before hiding the overlay
+            setTimeout(() => {
+                lightbox.style.display = 'none'; // Hide lightbox after the transition
+                lightbox.classList.remove('show'); // Remove the 'show' class to reset opacity
+            }, 300); // Timeout duration should match the transition time (0.3s)
+        }
+
+        // Add event listener for close button
+        document.querySelector('.close-btn').addEventListener('click', closeLightbox);
+
+    </script>
+
+    <script>
+
+        window.addEventListener('scroll', function () {
+            let scrollIndicator = document.getElementById('scroll-indicator');
+            let arrow = document.getElementById('scroll-arrow');
+
+            if (window.scrollY > 0) {
+                scrollIndicator.classList.add('hidden'); // Add hidden class
+                arrow.classList.add('hidden'); // Add hidden class
+            } else {
+                scrollIndicator.classList.remove('hidden'); // Remove hidden class
+                arrow.classList.remove('hidden'); // Remove hidden class
+            }
+        });
+
+        let prevScrollPos = window.pageYOffset;
+        const navbar = document.querySelector('nav');
+
+        window.onscroll = function () {
+            let currentScrollPos = window.pageYOffset;
+            if (currentScrollPos > 100) { // Adjust this threshold value
+                navbar.style.top = "-60px"; // Hide navbar (adjust height if needed)
+            } else {
+                navbar.style.top = "0"; // Show navbar
+            }
+            prevScrollPos = currentScrollPos;
+        }
+
+        let lastScrollPosition = 0;
+        window.addEventListener('scroll', function () {
+            let footer = document.querySelector('footer');
+            let scrollPosition = window.innerHeight + window.scrollY;
+            let documentHeight = document.documentElement.offsetHeight;
+
+            if (scrollPosition > documentHeight - footer.offsetHeight) {
+                footer.style.opacity = 1;
+            } else if (window.scrollY < lastScrollPosition) {
+                footer.style.opacity = 0;
+            }
+
+            lastScrollPosition = window.scrollY;
+        });
+
+        const couponData = {
+            "Team Collaboration": "Experience seamless teamwork and collaboration with our dedicated team members.",
+            "Innovative Projects": "Get involved in cutting-edge projects that push the boundaries of technology.",
+            "Professional Growth": "Take advantage of opportunities for professional development and career advancement.",
+            "Work-Life Balance": "Enjoy a healthy work-life balance with flexible working hours and remote work options.",
+            "Inclusive Culture": "Be part of an inclusive and diverse workplace that values every individual's contribution.",
+            "Employee Benefits": "Access a comprehensive benefits package that supports your health and well-being."
+        };
+
+        // Open the modal with coupon details
+        function redeemCoupon(couponName) {
+            const modal = document.getElementById('coupon-modal');
+            const title = document.getElementById('coupon-title');
+            const description = document.getElementById('coupon-description');
+
+            // Update modal content
+            title.textContent = couponName;
+            description.textContent = couponData[couponName];
+
+            // Show the modal
+            modal.style.display = 'flex';
+        }
+
+        // Close the modal
+        function closeModal() {
+            const modal = document.getElementById('coupon-modal');
+            modal.style.display = 'none';
+        }
+
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

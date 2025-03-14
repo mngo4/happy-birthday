@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Nav</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Berkshire+Swash&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Yeseva+One&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="hat.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="index-page">
+
+
+
+    <header class="cover">
+        <img src="cover1.jpg" alt="Birthday Cover Image">
+        <h1>Happy Birthday Nav!</h1>
+        <p>Welcome to your special birthday website! Explore the pages for fun surprises.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="letter.html">Letter</a></li>
+            <li><a href="coupons.html">Coupons</a></li>
+            <li><a href="cake.html">Birthday Cake</a></li>
+            <li><a href="gift.html">Gift</a></li>
+        </ul>
+
+
+    </nav>
+
+    <audio id="bg-music" loop>
+        <source src="background-4.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="sound-btn">
+        <i class="fas fa-volume-mute"></i> <!-- Default icon for sound -->
+    </button>
+
+
+    <div id="message-container">
+        <p id="message">Happy Birthday!</p>
+    </div>
+
+    <div class="card-container">
+        <div class="home-card card-1">
+            <h2>Letter</h2>
+            <p>Read your special birthday letter!</p>
+            <button onclick="window.location.href='letter.html'">Read It</button>
+        </div>
+        <div class="home-card card-2">
+            <h2>Coupons</h2>
+            <p>Explore the birthday coupons available for you!</p>
+            <button onclick="window.location.href='coupons.html'">Claim Them</button>
+        </div>
+        <div class="home-card card-3">
+            <h2>Birthday Cake</h2>
+            <p>Have a slice of birthday fun!</p>
+            <button onclick="window.location.href='cake.html'">Let's Celebrate</button>
+        </div>
+        <div class="home-card card-4">
+            <h2>Gift</h2>
+            <p>Check out your birthday gift!</p>
+            <button onclick="window.location.href='gift.html'">Open It</button>
+        </div>
+    </div>
+
+    <div id="scroll-indicator">Scroll Slowly</div>
+    <div id="scroll-arrow">&#8595;</div>
+
+
+
+
+    <footer>
+        <p>Made with ♡ by Michelle</p>
+    </footer>
+
+
+
+    <script>
+
+        window.addEventListener('scroll', function () {
+            let scrollIndicator = document.getElementById('scroll-indicator');
+            let arrow = document.getElementById('scroll-arrow');
+
+            if (window.scrollY > 0) {
+                scrollIndicator.classList.add('hidden'); // Add hidden class
+                arrow.classList.add('hidden'); // Add hidden class
+            } else {
+                scrollIndicator.classList.remove('hidden'); // Remove hidden class
+                arrow.classList.remove('hidden'); // Remove hidden class
+            }
+        });
+
+        let prevScrollPos = window.pageYOffset;
+        const navbar = document.querySelector('nav');
+
+        window.onscroll = function () {
+            let currentScrollPos = window.pageYOffset;
+            if (currentScrollPos > 100) { // Adjust this threshold value
+                navbar.style.top = "-60px"; // Hide navbar (adjust height if needed)
+            } else {
+                navbar.style.top = "0"; // Show navbar
+            }
+            prevScrollPos = currentScrollPos;
+        }
+
+        let lastScrollPosition = 0;
+        window.addEventListener('scroll', function () {
+            let footer = document.querySelector('footer');
+            let scrollPosition = window.innerHeight + window.scrollY;
+            let documentHeight = document.documentElement.offsetHeight;
+
+            if (scrollPosition >= documentHeight) {
+                footer.style.opacity = 1;
+            } else if (window.scrollY < lastScrollPosition) {
+                footer.style.opacity = 0;
+            }
+
+            lastScrollPosition = window.scrollY;
+        });
+
+        window.addEventListener('scroll', function () {
+            let messageContainer = document.getElementById('message-container');
+            let message = document.getElementById('message');
+            let scrollPosition = window.scrollY;
+            let documentHeight = document.documentElement.scrollHeight;
+            let viewportHeight = window.innerHeight;
+
+            // Show different messages based on scroll position
+            if (scrollPosition > 100 && scrollPosition < 300) {
+                messageContainer.classList.add('active');
+                message.innerText = "I hope this website is out of this world!";
+            } else if (scrollPosition >= 300 && scrollPosition < 500) {
+                message.innerText = "You light up the universe, one star at a time!";
+            } else if (scrollPosition >= 500 && scrollPosition < 700) {
+                message.innerText = "Wishing you the best birthday!";
+            } else if (scrollPosition >= 700 && scrollPosition < 900) {
+                message.innerText = "Love ya ♡";
+            } else {
+                messageContainer.classList.remove('active');
+            }
+
+            const cardsContainer = document.getElementById('cards-container');
+            // Show cards at the very end of the scroll
+            if (scrollPosition + viewportHeight >= documentHeight) {
+                cardsContainer.classList.add('show');
+            } else {
+                cardsContainer.classList.remove('show');
+            }
+        });
+
+    </script>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

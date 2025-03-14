@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Cake For You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Berkshire+Swash&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Yeseva+One&display=swap"
+        rel="stylesheet">
+        <link rel="icon" href="cake.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="cover">
+        <img src="cover1.jpg" alt="Birthday Cover Image">
+        <h1>Your Tiramisu Birthday Cake</h1>
+    </header>
+
+
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="letter.html">Letter</a></li>
+            <li><a href="coupons.html">Coupons</a></li>
+            <li><a href="cake.html">Birthday Cake</a></li>
+            <li><a href="gift.html">Gift</a></li>
+        </ul>
+    </nav>
+
+    <div class="content-wrapper">
+        <button id="start">Click Me!</button>
+        <button style="display: none" id="startconsoledebug">enable console logs</button>
+        <button style="display: none" id="stopconsoledebug">disable console logs</button>
+        <div id="cake-holder" style="opacity: 0">
+            <div class="cake">
+                <div class="plate"></div>
+                <div class="layer layer-bottom"></div>
+                <div class="layer layer-middle"></div>
+                <div class="layer layer-top"></div>
+                <div class="icing"></div>
+                <div class="drip drip1"></div>
+                <div class="drip drip2"></div>
+                <div class="drip drip3"></div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+            </div>
+        </div>
+        <p id="wish-message" style="display: none;">Make a wish and blow out the candle (actually blow)!</p>
+    </div>
+
+    <audio id="birthday-song" src="birthday-song.mp3"></audio>
+
+
+    <div id="scroll-indicator">Scroll to Bottom</div>
+    <div id="scroll-arrow">&#8595;</div>
+
+
+    <footer>
+        <p>Made with ♡ by Michelle</p>
+    </footer>
+
+    <script src="cake.js"></script>
+    <script src="volume-meter.js"></script>
+    <script src="audioDetectionConfig.js"></script>
+    <script src="audioDetection.js"></script>
+    <script src="audioStream.js"></script>
+
+    <script src="demoAudioRecorder.js"></script>
+    <script src="demoAudioDetectionListeners.js"></script>
+    <script src="demo.js"></script>
+
+    <script>
+        // JavaScript to display the message after the cake appears
+        document.getElementById('start').addEventListener('click', function () {
+            document.getElementById('wish-message').style.display = 'block';
+            document.getElementById('start').style.display = 'none'; // Hide the button after it's clicked
+        });
+    </script>
+
+    <script>
+
+        window.addEventListener('scroll', function () {
+            let scrollIndicator = document.getElementById('scroll-indicator');
+            let arrow = document.getElementById('scroll-arrow');
+
+            if (window.scrollY > 0) {
+                scrollIndicator.classList.add('hidden'); // Add hidden class
+                arrow.classList.add('hidden'); // Add hidden class
+            } else {
+                scrollIndicator.classList.remove('hidden'); // Remove hidden class
+                arrow.classList.remove('hidden'); // Remove hidden class
+            }
+        });
+
+        let prevScrollPos = window.pageYOffset;
+        const navbar = document.querySelector('nav');
+
+        window.onscroll = function () {
+            let currentScrollPos = window.pageYOffset;
+            if (currentScrollPos > 100) { // Adjust this threshold value
+                navbar.style.top = "-60px"; // Hide navbar (adjust height if needed)
+            } else {
+                navbar.style.top = "0"; // Show navbar
+            }
+            prevScrollPos = currentScrollPos;
+        }
+
+        let lastScrollPosition = 0;
+        window.addEventListener('scroll', function () {
+            let footer = document.querySelector('footer');
+            let scrollPosition = window.innerHeight + window.scrollY;
+            let documentHeight = document.documentElement.offsetHeight;
+
+            if (scrollPosition >= documentHeight) {
+                footer.style.opacity = 1;
+            } else if (window.scrollY < lastScrollPosition) {
+                footer.style.opacity = 0;
+            }
+
+            lastScrollPosition = window.scrollY;
+        });
+
+
+        document.getElementById('cake-holder').style.opacity = '0'; 
+
+        document.getElementById('start').addEventListener('click', function () {
+        // Show the cake by changing the opacity
+        document.getElementById('cake-holder').style.opacity = '1'; 
+
+        // Show the wish message
+        document.getElementById('wish-message').style.display = 'block';
+
+        // Hide the 'Click Me!' button after it's clicked
+        this.style.display = 'none';
+
+        // Play the birthday song
+        const audio = document.getElementById('birthday-song');
+        audio.play();
+    });
+
+    
+
+
+    </script>
+
+
+</body>
+
+</html>

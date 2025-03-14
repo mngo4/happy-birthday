@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Letter To You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Berkshire+Swash&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Yeseva+One&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="letter.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="cover">
+        <img src="cover1.jpg" alt="Birthday Cover Image">
+        <h1>My Letter to You</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="letter.html">Letter</a></li>
+            <li><a href="coupons.html">Coupons</a></li>
+            <li><a href="cake.html">Birthday Cake</a></li>
+            <li><a href="gift.html">Gift</a></li>
+        </ul>
+    </nav>
+    <audio id="bg-music" loop>
+        <source src="background-3.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="sound-btn">
+        <i class="fas fa-volume-mute"></i> <!-- Default icon for sound -->
+    </button>
+
+
+    <div class="letter-container">
+
+        <section class="letter-header">
+            <h2>Welcome!</h2>
+            <p class="date">01.31.25</p>
+        </section>
+
+        <section class="letter-body">
+            <p>Welcome to my portfolio website! This is a space where I showcase my coding abilities and projects. I have a passion for creating dynamic and engaging web applications, and I hope you find my work impressive.</p>
+
+            <p>Throughout my career, I have developed a wide range of skills in web development, including front-end and back-end technologies. I am proficient in HTML, CSS, JavaScript, and various frameworks and libraries such as React, Angular, and Node.js. My goal is to build user-friendly and efficient applications that solve real-world problems.</p>
+
+            <p>In addition to my technical skills, I am a strong advocate for clean code and best practices. I believe in writing maintainable and scalable code that can be easily understood and extended by other developers. I am also committed to continuous learning and staying up-to-date with the latest industry trends and technologies.</p>
+
+            <p>On this website, you will find examples of my work, including personal projects, contributions to open-source projects, and professional experience. Each project highlights different aspects of my skills and demonstrates my ability to tackle complex challenges.</p>
+
+            <p>I am always looking for new opportunities to grow and collaborate with other talented individuals. If you are interested in working with me or have any questions about my work, please feel free to reach out. I would love to connect and discuss how we can create something amazing together.</p>
+
+            <p>Thank you for visiting my portfolio. I hope you enjoy exploring my projects and learning more about my journey as a developer.</p>
+
+            <p class="highlight">Best regards, [Your Name]</p>
+
+            <p class="sign-off">With passion for coding, [Your Name]</p>
+        </section>
+    </div>
+
+
+    <div id="scroll-indicator">Scroll</div>
+    <div id="scroll-arrow">&#8595;</div>
+
+    <footer>
+        <p>Made with ♡ by Michelle</p>
+    </footer>
+
+    <script>
+
+        window.addEventListener('scroll', function () {
+            let scrollIndicator = document.getElementById('scroll-indicator');
+            let arrow = document.getElementById('scroll-arrow');
+
+            if (window.scrollY > 0) {
+                scrollIndicator.classList.add('hidden'); // Add hidden class
+                arrow.classList.add('hidden'); // Add hidden class
+            } else {
+                scrollIndicator.classList.remove('hidden'); // Remove hidden class
+                arrow.classList.remove('hidden'); // Remove hidden class
+            }
+        });
+
+        let prevScrollPos = window.pageYOffset;
+        const navbar = document.querySelector('nav');
+
+        window.onscroll = function () {
+            let currentScrollPos = window.pageYOffset;
+            if (currentScrollPos > 100) { // Adjust this threshold value
+                navbar.style.top = "-60px"; // Hide navbar (adjust height if needed)
+            } else {
+                navbar.style.top = "0"; // Show navbar
+            }
+            prevScrollPos = currentScrollPos;
+        }
+
+        let lastScrollPosition = 0;
+        window.addEventListener('scroll', function () {
+            let footer = document.querySelector('footer');
+            let scrollPosition = window.innerHeight + window.scrollY;
+            let documentHeight = document.documentElement.scrollHeight;
+
+            if (scrollPosition >= documentHeight) {
+                footer.style.opacity = 1; // Make the footer fully visible
+            } else if (window.scrollY < lastScrollPosition) {
+                footer.style.opacity = 0; // Hide the footer if scrolling up
+            }
+
+            lastScrollPosition = window.scrollY;
+        });
+
+
+
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
